@@ -1,0 +1,3 @@
+class CollectorsController < ApplicationController
+  
+end
