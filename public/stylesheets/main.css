@@ -1,3 +1,92 @@
 body{
   background-color: sandybrown;
 }
+.footer{
+  clear: both;
+}
+.table_header{
+  background-color: wheat;
+  text-align: center;
+}
+.table_body{
+  background-color: thistle;
+  margin: auto;
+  padding: 10px;
+  width: 215px;
+  border: 3px solid green; 
+}
+.table_body_outer{
+  border: 3px solid green; 
+  height: 350px;
+  padding-top: 15px;
+}
+.collection_header{
+  text-align: center;
+}
+.collection_items{
+  float: left;
+  border: 3px solid green; 
+  background-color: thistle;
+  width: 215px;
+  padding: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+a:link {
+  text-decoration: none;
+}
+.art_header{
+  background-color: wheat;
+  text-align: center;
+}
+.art_body{
+  margin: auto;
+  text-align: center;
+  background-color: mediumturquoise;
+  border: 3px solid seashell; 
+  width: 215px;
+}
+.artworks_header{
+  text-align: center;
+}
+.artworks_body{
+  float: left;
+  background-color: mediumturquoise;
+  border: 3px solid seashell; 
+  height: 175px;
+  width: 175px;
+  padding: 30px 20px 25px 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.artists_body{
+  background-color: mediumturquoise;
+  border: 3px solid seashell; 
+  width: 175px;
+  padding: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.artist_header{
+  text-align: center;
+  background-color: wheat;
+  padding: 10px;
+  text-align: center;
+}
+.artist_body{
+
+  text-align: center;
+}
+.artist_work{
+  float: left;
+  background-color: mediumturquoise;
+  border: 3px solid seashell; 
+  width: 175px;
+  padding: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
