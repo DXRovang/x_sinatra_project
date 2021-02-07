@@ -34,7 +34,12 @@ class ArtworksController < ApplicationController
   end
 
   get '/artworks/:id' do #show
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @artwork = Artwork.find(params[:id])
+      erb :'artworks/show'
+    end
   end
 
   get '/artworks/:id/edit' do #edit form
