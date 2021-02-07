@@ -1,33 +1,35 @@
 class ArtworksController < ApplicationController
-  get 'artworks' do #index
+
+  get '/artworks' do #index
+    @artworks = Artwork.all 
+    erb :'artworks/index'
+  end
+
+  get '/artworks/new' do #new form
     
   end
 
-  get 'artworks/new' do #new form
+  post '/artworks' do #create
     
   end
 
-  post 'artworks' do #create
+  get '/artworks/:id' do #show
     
   end
 
-  get 'artworks/:id' do #show
+  get '/artworks/:id/edit' do #edit form
     
   end
 
-  get 'artworks/:id/edit' do #edit form
+  post '/artworks/:id' do #update
     
   end
 
-  post 'artworks/:id' do #update
+  get '/artworks/:id/delete' do #delete confirmation
     
   end
 
-  get 'artworks/:id/delete' do #delete confirmation
-    
-  end
-
-  post 'artworks/:id/delete' do #delete
+  post '/artworks/:id/delete' do #delete
     
   end
 end

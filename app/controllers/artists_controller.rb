@@ -5,31 +5,31 @@ class ArtistsController < ApplicationController
     erb :'artists/index'
   end
 
-  get 'artists/new' do #new form
+  get '/artists/new' do #new form
     
   end
 
-  post 'artists' do #create
+  post '/artists' do #create
     
   end
 
-  get 'artists/:id' do #show
+  get '/artists/:id' do #show
     
   end
 
-  get 'artists/:id/edit' do #edit form
+  get '/artists/:id/edit' do #edit form
     
   end
 
-  post 'artists/:id' do #update
+  post '/artists/:id' do #update
     
   end
 
-  get 'artists/:id/delete' do #delete confirmation
+  get '/artists/:id/delete' do #delete confirmation
     
   end
 
-  post 'artists/:id/delete' do #delete
+  post '/artists/:id/delete' do #delete
     
   end
   
