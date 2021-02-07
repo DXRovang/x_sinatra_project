@@ -1,3 +1,18 @@
-<% @artworks.each do |artwork| %>
-<%= artwork.name %>
+<div class="artworks_header">
+  <h1>Current Artworks in the Database</h1><br><br>
+</div>
+
+<% art = @artworks.sort_by {|x| x.name} %>
+
+<% art.each do |art| %>
+<div class="artworks_body">
+  <p><a href="/artworks/<%= art.id %>">
+  <h3>"<%= art.name %>"</h3></a></p>
+  <p><%= art.date %></p>
+  <p><a href="/artists/<%= art.artist.id %>">
+  <%= art.artist.name %></a></p><br>
+</div>
 <% end %>
+<div class="footer">
+  Table of Contents
+</div>
