@@ -1,5 +1,33 @@
-<form action="" method="">
-  <label for=""></label>
-  <input type="" name="" id="">
-  <input type=submit value=submit>
-</form>
+
+<h1>ARTWORK</h1>
+
+<form action="/artworks" method="post">
+<div>
+  <div><label for="artwork_name">Name: </label></div>
+  <input type=text name=name id="artwork_name">
+</div>
+<div>
+  <div><label for="artwork_medium">Medium: </label></div>
+  <input type=text name=medium id="artwork_medium">
+</div>
+<div>
+  <div><label for="artwork_genre">Genre: </label></div>
+  <input type=text name=genre id="artwork_genre">
+</div>
+<div>
+  <div><label for="artwork_price">Price(USD): </label></div>
+  <input type=integer name=price id="artwork_price">
+</div>
+<div>
+  <div><label for="artwork_date">Date: </label></div>
+  <input type=integer name=date id="artwork_date">
+</div>
+<div>
+  <div><label for="artwork_artist">Artist*: </label></div>
+  <input type=text name=artist_id id="artwork_artist">
+</div><br>
+
+<input type="submit" value="submit"></form><br><br>
+
+<div>Table of Contents</div>
+*<em>this Artist must exist in our Database</em>
