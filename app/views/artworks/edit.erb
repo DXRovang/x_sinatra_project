@@ -1,5 +1,27 @@
-<form action="" method="">
-  <label for=""></label>
-  <input type="" name="" id="">
-  <input type=submit value=submit>
+
+<h1>Edit Page for "<%= @artwork.name %>"</h1><br>
+
+<form action="/artworks/<%= @artwork.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch" />
+
+  <div>
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" value="<%= @artwork.name %>"/>
+  </div>
+  <div>
+    <label for="genre">Genre: </label>
+    <input type="text" name="genre" id="genre" value="<%= @artwork.genre %>"/>
+  </div>
+  <div>
+    <label for="medium">Medium: </label>
+    <input type="text" name="medium" id="medium" value="<%= @artwork.medium %>"/>
+  </div>
+  <div>
+    <label for="date">Date: </label>
+    <input type="text" name="date" id="date" value="<%= @artwork.date %>"/>
+  </div>
+  
+  <input type="submit" value="submit"/>
 </form>
+
+<a href="/collector">My Collection</a>
