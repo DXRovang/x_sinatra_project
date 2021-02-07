@@ -1,5 +1,27 @@
-<form action="" method="">
-  <label for=""></label>
-  <input type="" name="" id="">
-  <input type=submit value=submit>
+<h1>Edit Page for <%= @artist.FirstName %> <%= @artist.LastName %></h1><br>
+
+<form action="/artists/<%= @artist.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch" />
+
+  <div>
+    <label for="FirstName">First Name: </label>
+    <input type="text" name="FirstName" id="FirstName" value="<%= @artist.FirstName %>"/>
+  </div>
+    <div>
+    <label for="LastName">Last Name: </label>
+    <input type="text" name="LastName" id="LastName" value="<%= @artist.LastName %>"/>
+  </div>
+  <div>
+    <label for="origin">Origin: </label>
+    <input type="text" name="origin" id="origin" value="<%= @artist.origin %>"/>
+  </div>
+  <div>
+    <label for="DOB">DOB: </label>
+    <input type="text" name="DOB" id="DOB" value="<%= @artist.DOB %>"/>
+  </div>
+
+  
+  <input type="submit" value="submit"/>
 </form>
+
+Table of Contents

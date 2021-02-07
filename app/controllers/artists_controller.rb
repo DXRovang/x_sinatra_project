@@ -26,11 +26,24 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/:id/edit' do #edit form
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @artist = Artist.find_by_id(params[:id])
+      erb :'artists/edit'
+    end
   end
 
   post '/artists/:id' do #update
-    
+    artist = Artist.find_by_id(params[:id])
+
+    artist.update(
+      FirstName: params[:FirstName],
+      LastName: params[:LastName],
+      origin: params[:origin],
+      DOB: params[:DOB]
+    )
+    redirect to "/artists/#{artist.id}"
   end
 
   get '/artists/:id/delete' do #delete confirmation

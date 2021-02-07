@@ -4,11 +4,11 @@
   <h1>"<%= @artwork.name %>"</h1>
 </div><br>
 <div class="art_body">
-  <p><%= @artwork.date %></p>
-  <p><%= @artwork.genre %></p>
-  <p><%= @artwork.medium %></p>
-  <p>by <a href="/artists/<%= @artwork.artist.id %>">
-  <%= @artwork.artist.FirstName %> <%= @artwork.artist.LastName %></a></p>
+  <div><%= @artwork.date %></div>
+  <div><%= @artwork.genre %></div>
+  <div><%= @artwork.medium %></div>
+  <div>by <a href="/artists/<%= @artwork.artist.id %>">
+  <%= @artwork.artist.FirstName %> <%= @artwork.artist.LastName %></a></div>
 </div>
   
 <div><a href="/artworks">Index of Artworks<a></div>

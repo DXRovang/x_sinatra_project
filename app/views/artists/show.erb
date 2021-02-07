@@ -15,9 +15,9 @@
     <% @artist.artworks.each do |art| %>
     <div class="artist_work">
         <h3><a href="/artworks/<%= art.id %>">"<%= art.name %>"</a></h3>
-            <p><%= art.date %></p>
-            <p><%= art.genre %></p>
-            <p><%= art.medium %></p>
+            <div><%= art.date %></div>
+            <div><%= art.genre %></div>
+            <div><%= art.medium %></div>
     </div>
     <% end %>
 </div>

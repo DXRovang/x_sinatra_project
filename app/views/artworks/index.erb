@@ -6,11 +6,11 @@
 
 <% art.each do |art| %>
 <div class="artworks_body">
-  <p><a href="/artworks/<%= art.id %>">
-  <h3>"<%= art.name %>"</h3></a></p>
-  <p><%= art.date %></p>
-  <p><a href="/artists/<%= art.artist.id %>">
-  <%= art.artist.FirstName %> <%= art.artist.LastName %></a></p><br>
+  <div><a href="/artworks/<%= art.id %>">
+  <h3>"<%= art.name %>"</h3></a></div>
+  <div><%= art.date %></div>
+  <div><a href="/artists/<%= art.artist.id %>">
+  <%= art.artist.FirstName %> <%= art.artist.LastName %></a></div><br>
 </div>
 <% end %>
 <div class="footer">
