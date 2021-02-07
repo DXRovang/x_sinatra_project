@@ -47,11 +47,22 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/:id/delete' do #delete confirmation
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @artist = Artist.find_by_id(params[:id])
+      erb :'artists/delete'
+    end
   end
 
-  post '/artists/:id/delete' do #delete
-    
+  post '/artists/:id/delete' do #destroy
+    artist = Artist.find_by_id(params[:id])
+    art = artist.artworks 
+    art.each do |work|
+      work.delete
+    end
+    artist.delete
+    redirect to "/artists"
   end
   
 end
