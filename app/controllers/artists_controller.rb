@@ -6,11 +6,18 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/new' do #new form
-    
+    erb :'artists/new'
   end
 
   post '/artists' do #create
-    
+    artist = Artist.new(
+      FirstName: params[:FirstName],
+      LastName: params[:LastName],
+      DOB: params[:DOB],
+      origin: params[:origin]
+    )
+    artist.save
+    redirect '/artists'
   end
 
   get '/artists/:id' do #show
