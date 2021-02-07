@@ -1,3 +1,12 @@
+<h1>Current Artists in the Database</h1><br>
+
 <% @artists.each do |artist| %>
-  <p><%= artist.FirstName %></p>
+<div class="artists_body">
+  <h1><a href="/artists/<%= artist.id %>">
+  <%= artist.FirstName %> <%= artist.LastName %></a></h1>
+  <div>(<%= artist.DOB %>)</div>
+  <%= artist.origin %></div>
 <% end %>
+
+
+<div>Table of Contents</div>
