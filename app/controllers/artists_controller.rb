@@ -21,7 +21,8 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/:id' do #show
-    
+    @artist = Artist.find_by_id(params[:id])
+    erb :'artists/show'
   end
 
   get '/artists/:id/edit' do #edit form

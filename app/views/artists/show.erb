@@ -1,0 +1,28 @@
+<div class="artist_header">
+    <h1><%= @artist.FirstName %> <%= @artist.LastName %></h1>
+    <div>(<%= @artist.DOB %>)</div>
+    <%= @artist.origin %>
+<div>
+    <a href="/artists/<%= @artist.id %>/edit"><button>Edit</button><a>
+    <% if @artist.artworks[0].name == "" || @artist.artworks[0].name == [] %>
+        <a href="/artists/<%= @artist.id %>/delete"><button>Delete</button><a>
+    <% end %>
+</div>
+</div><br>
+
+<div class="artist_body">
+    <h2>Artworks</h2>
+    <% @artist.artworks.each do |art| %>
+    <div class="artist_work">
+        <h3><a href="/artworks/<%= art.id %>">"<%= art.name %>"</a></h3>
+            <p><%= art.date %></p>
+            <p><%= art.genre %></p>
+            <p><%= art.medium %></p>
+    </div>
+    <% end %>
+</div>
+
+<div class="footer">
+    <div><a href="/artists">Index of Artists<a></div>
+    <div>Table of Contents</div>
+</div>
