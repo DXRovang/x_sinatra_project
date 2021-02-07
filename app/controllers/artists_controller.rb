@@ -10,6 +10,13 @@ class ArtistsController < ApplicationController
   end
 
   post '/artists' do #create
+    artists = Artist.all
+
+    artists.each do |artist|
+      if artist.FirstName == params[:artist][:FirstName] && artist.LastName == params[:artist][:LastName]
+        redirect '/artists/error'
+      end
+    end
 
     artist = Artist.new(
       FirstName: params[:artist][:FirstName],
@@ -26,8 +33,11 @@ class ArtistsController < ApplicationController
       new_art.collector_id = current_user.id
       new_art.save
     end
-
     redirect "/artists/#{artist.id}"
+  end
+
+  get '/artists/error' do
+    erb :'artists/error'
   end
 
   get '/artists/:id' do #show
