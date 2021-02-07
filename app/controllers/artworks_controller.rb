@@ -43,11 +43,24 @@ class ArtworksController < ApplicationController
   end
 
   get '/artworks/:id/edit' do #edit form
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @artwork = Artwork.find_by_id(params[:id])
+      erb :'artworks/edit'
+    end
   end
 
   post '/artworks/:id' do #update
-    
+    artwork = Artwork.find_by_id(params[:id])
+
+    artwork.update(
+      name: params[:name],
+      genre: params[:genre],
+      medium: params[:medium],
+      date: params[:date],
+    )
+    redirect to "/artworks/#{artwork.id}"
   end
 
   get '/artworks/:id/delete' do #delete confirmation

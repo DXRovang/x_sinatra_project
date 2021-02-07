@@ -8,7 +8,7 @@
   <p><%= @artwork.genre %></p>
   <p><%= @artwork.medium %></p>
   <p>by <a href="/artists/<%= @artwork.artist.id %>">
-  <%= @artwork.artist.name %></a></p>
+  <%= @artwork.artist.FirstName %> <%= @artwork.artist.LastName %></a></p>
 </div>
   
 <div><a href="/artworks">Index of Artworks<a></div>
