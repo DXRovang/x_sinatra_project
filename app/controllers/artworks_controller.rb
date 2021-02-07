@@ -24,7 +24,7 @@ class ArtworksController < ApplicationController
         price: params[:price], 
         date: params[:date], 
         artist_id: artist.id,
-        user_id: current_user.id 
+        collector_id: current_user.id 
       )
       artwork.save
       redirect "/artworks"

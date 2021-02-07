@@ -24,23 +24,27 @@ class CollectorsController < ApplicationController
     end
   end
 
-  get 'collectors/:id' do #show
+  get '/collectors' do #show
+    if !logged_in? 
+      redirect '/login'
+    else
+      erb :'collectors/show'
+    end
+  end
+
+  get '/collectors/edit' do #edit form
     
   end
 
-  get 'collectors/:id/edit' do #edit form
+  post '/collectors' do #update
     
   end
 
-  post 'collectors/:id' do #update
+  get '/collectors/delete' do #delete confirmation
     
   end
 
-  get 'collectors/:id/delete' do #delete confirmation
-    
-  end
-
-  post 'collectors/:id/delete' do #delete
+  post '/collectors/delete' do #delete
     
   end
 
