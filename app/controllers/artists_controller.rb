@@ -1,7 +1,8 @@
 class ArtistsController < ApplicationController
 
-  get 'artists' do #index
-    
+  get '/artists' do #index
+    @artists = Artist.all 
+    erb :'artists/index'
   end
 
   get 'artists/new' do #new form
