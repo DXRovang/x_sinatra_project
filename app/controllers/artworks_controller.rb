@@ -64,10 +64,17 @@ class ArtworksController < ApplicationController
   end
 
   get '/artworks/:id/delete' do #delete confirmation
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @artwork = Artwork.find_by_id(params[:id])
+      erb :'artworks/delete'
+    end
   end
 
   post '/artworks/:id/delete' do #delete
-    
+    artwork = Artwork.find_by_id(params[:id])
+    artwork.delete
+    redirect to "/artworks"
   end
 end
