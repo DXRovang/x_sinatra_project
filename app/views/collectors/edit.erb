@@ -1,0 +1,22 @@
+<h1>Edit Page for <%= current_user.name %></h1><br>
+
+<form action="/collector/edit" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch" />
+
+  <div>
+    <div><label for="name">Name: </label></div>
+    <input type="text" name="name" id="name" value="<%= current_user.name %>"/>
+  </div>
+  <div>
+    <div><label for="email">Email: </label></div>
+    <input type="text" name="email" id="email" value="<%= current_user.email %>"/>
+  </div>
+    <div>
+    <div><label for="password">Password: </label></div>
+    <input type="text" name="password" id="password" />
+  </div><br>
+  
+  <input type="submit" value="submit"/>
+</form><br>
+
+<a href="/index">Table of Contents</a>

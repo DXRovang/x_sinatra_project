@@ -32,12 +32,22 @@ class CollectorsController < ApplicationController
     end
   end
 
-  get '/collectors/edit' do #edit form
-    
+  get '/collectors/edit' do #edit
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'collectors/edit'
+    end
   end
 
-  post '/collectors' do #update
-    
+  post '/collectors/edit' do #update
+ 
+    current_user.update(
+      name: params[:name],
+      email: params[:email],
+      password: params[:password]
+    )
+    redirect to "/collectors"
   end
 
   get '/collectors/delete' do #delete confirmation
