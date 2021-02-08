@@ -4,21 +4,21 @@
   <input id="hidden" type="hidden" name="_method" value="patch" />
 
   <div>
-    <label for="FirstName">First Name: </label>
+    <div><label for="FirstName">First Name: </label></div>
     <input type="text" name="FirstName" id="FirstName" value="<%= @artist.FirstName %>"/>
   </div>
-    <div>
-    <label for="LastName">Last Name: </label>
+  <div>
+    <div><label for="LastName">Last Name: </label></div>
     <input type="text" name="LastName" id="LastName" value="<%= @artist.LastName %>"/>
   </div>
   <div>
-    <label for="origin">Origin: </label>
+    <div><label for="origin">Origin: </label></div>
     <input type="text" name="origin" id="origin" value="<%= @artist.origin %>"/>
   </div>
   <div>
-    <label for="DOB">DOB: </label>
+    <div><label for="DOB">DOB: </label></div>
     <input type="text" name="DOB" id="DOB" value="<%= @artist.DOB %>"/>
-  </div>
+  </div><br>
 
   
   <input type="submit" value="submit"/>

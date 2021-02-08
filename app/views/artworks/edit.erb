@@ -5,21 +5,21 @@
 <input id="hidden" type="hidden" name="_method" value="patch" />
 
   <div>
-    <label for="name">Name: </label>
+    <div><label for="name">Name: </label></div>
     <input type="text" name="name" id="name" value="<%= @artwork.name %>"/>
   </div>
   <div>
-    <label for="genre">Genre: </label>
+    <div><label for="genre">Genre: </label></div>
     <input type="text" name="genre" id="genre" value="<%= @artwork.genre %>"/>
   </div>
   <div>
-    <label for="medium">Medium: </label>
+    <div><label for="medium">Medium: </label></div>
     <input type="text" name="medium" id="medium" value="<%= @artwork.medium %>"/>
   </div>
   <div>
-    <label for="date">Date: </label>
+    <div><label for="date">Date: </label></div>
     <input type="text" name="date" id="date" value="<%= @artwork.date %>"/>
-  </div>
+  </div><br>
   
   <input type="submit" value="submit"/>
 </form>
