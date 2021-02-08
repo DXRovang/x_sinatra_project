@@ -15,8 +15,8 @@ class ArtworksController < ApplicationController
 
   post '/artworks' do #create
     
-    if Artist.find_by(name: params[:artist_id]) != nil
-      artist = Artist.find_by(name: params[:artist_id])
+    if Artist.find_by(FirstName: params[:FirstName]) != nil && Artist.find_by(FirstName: params[:FirstName])
+      artist = Artist.find_by(LastName: params[:LastName])
       artwork = Artwork.new(
         name: params[:name], 
         medium: params[:medium], 
