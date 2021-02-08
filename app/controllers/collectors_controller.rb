@@ -32,6 +32,14 @@ class CollectorsController < ApplicationController
     end
   end
 
+  get '/collectors/show_artists' do
+    if !logged_in? 
+      redirect '/login'
+    else
+      erb :'collectors/show_artists'
+    end
+  end
+
   get '/collectors/edit' do #edit
     if !logged_in?
       redirect '/login'

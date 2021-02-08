@@ -22,12 +22,3 @@
 <% end %>
 
 
-<div class="footer">
-<div><a href="/index">Table of Contents</a></div></div>
-
-<% my_artists = art.uniq {|artist| artist.artist_id} %>
-<% my_artists.each do |x|%>
-<% artist = Artist.find(x.artist_id) %>
-<p><%= artist.LastName %></p>
-<%end%>
-

@@ -1,0 +1,12 @@
+<div class="collection_header">
+  <h1>Artists in Your Collection</h1>
+</div><br>
+
+<% art = @current_user.artworks.sort_by {|x| x.date} %>
+<% my_artists = art.uniq {|artist| artist.artist_id} %>
+<% my_artists.each do |x|%>
+  <div class="collection_items">
+  <% artist = Artist.find(x.artist_id) %>
+  <p><a href="/artists/<%= artist.id %>"><%= artist.FirstName %> <%= artist.LastName %></a></p>
+  </div>
+<%end%>
