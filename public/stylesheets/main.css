@@ -3,6 +3,8 @@ body{
 }
 .footer{
   clear: both;
+  position: fixed;
+  bottom: 10px;
 }
 .table_header{
   background-color: wheat;
