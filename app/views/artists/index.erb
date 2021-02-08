@@ -1,6 +1,8 @@
 <h1>Current Artists in the Database</h1><br>
 
-<% @artists.each do |artist| %>
+<% artists = @artists.sort_by {|x| x.LastName }%>
+
+<% artists.each do |artist| %>
 <div class="artists_body">
   <h1><a href="/artists/<%= artist.id %>">
   <%= artist.FirstName %> <%= artist.LastName %></a></h1>
