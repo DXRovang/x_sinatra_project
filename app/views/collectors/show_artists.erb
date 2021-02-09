@@ -2,7 +2,7 @@
   <h1>Artists in Your Collection</h1>
 </div><br>
 
-<% art = @current_user.artworks.sort_by {|x| x.date} %>
+<% art = @current_user.artworks.sort_by {|x| x.artist.LastName} %>
 <% my_artists = art.uniq {|artist| artist.artist_id} %>
 <% my_artists.each do |x|%>
   <div class="collection_items">
