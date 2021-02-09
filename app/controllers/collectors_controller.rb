@@ -48,7 +48,7 @@ class CollectorsController < ApplicationController
     end
   end
 
-  post '/collectors/edit' do #update
+  patch '/collectors/edit' do #update
  
     current_user.update(
       name: params[:name],
@@ -62,7 +62,7 @@ class CollectorsController < ApplicationController
     
   end
 
-  post '/collectors/delete' do #delete
+  delete '/collectors/delete' do #delete
     
   end
 

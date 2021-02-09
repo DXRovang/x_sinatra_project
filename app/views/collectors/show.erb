@@ -1,5 +1,6 @@
 <div class="collection_header">
   <h1>Your Collection</h1>
+  <button><a href="collectors/show_artists">Artists</a></button>
 </div><br>
 
 <% art = @current_user.artworks.sort_by {|x| x.date} %>

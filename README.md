@@ -1,2 +1,8 @@
 
-# x_sinatra_project
+# DESCRIPTION
+
+
+# INSTALL INSTRUCTIONS
+
+
+# CONTRIBUTOR'S GUIDE

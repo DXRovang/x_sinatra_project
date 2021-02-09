@@ -54,7 +54,7 @@ class ArtistsController < ApplicationController
     end
   end
 
-  post '/artists/:id' do #update
+  patch '/artists/:id' do #update
     artist = Artist.find_by_id(params[:id])
 
     artist.update(
@@ -75,7 +75,7 @@ class ArtistsController < ApplicationController
     end
   end
 
-  post '/artists/:id/delete' do #destroy
+  delete '/artists/:id/delete' do #destroy
     artist = Artist.find_by_id(params[:id])
     art = artist.artworks 
     art.each do |work|

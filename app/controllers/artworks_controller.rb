@@ -51,7 +51,7 @@ class ArtworksController < ApplicationController
     end
   end
 
-  post '/artworks/:id' do #update
+  patch '/artworks/:id' do #update
     artwork = Artwork.find_by_id(params[:id])
 
     artwork.update(
@@ -72,7 +72,7 @@ class ArtworksController < ApplicationController
     end
   end
 
-  post '/artworks/:id/delete' do #delete
+  delete '/artworks/:id/delete' do #delete
     artwork = Artwork.find_by_id(params[:id])
     artwork.delete
     redirect to "/artworks"
