@@ -1,12 +1,20 @@
 class ArtistsController < ApplicationController
 
   get '/artists' do #index
-    @artists = Artist.all 
-    erb :'artists/index'
+    if !logged_in?
+      redirect '/login'
+    else
+      @artists = Artist.all 
+      erb :'artists/index'
+    end
   end
 
   get '/artists/new' do #new form
-    erb :'artists/new'
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'artists/new'
+    end
   end
 
   post '/artists' do #create
@@ -41,8 +49,13 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/:id' do #show
-    @artist = Artist.find_by_id(params[:id])
-    erb :'artists/show'
+    # @artist = Artist.find_by_slug(params[:slug])
+    if !logged_in?
+      redirect '/login'
+    else
+      @artist = Artist.find_by_id(params[:id])
+      erb :'artists/show'
+    end
   end
 
   get '/artists/:id/edit' do #edit form

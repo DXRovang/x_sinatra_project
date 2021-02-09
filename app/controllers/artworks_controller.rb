@@ -1,8 +1,12 @@
 class ArtworksController < ApplicationController
 
   get '/artworks' do #index
-    @artworks = Artwork.all 
-    erb :'artworks/index'
+    if !logged_in?
+      redirect '/login'
+    else
+      @artworks = Artwork.all 
+      erb :'artworks/index'
+    end
   end
 
   get '/artworks/new' do #new form
@@ -37,6 +41,7 @@ class ArtworksController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
+      # @artwork = Artwork.find_by_slug(params[:slug])
       @artwork = Artwork.find(params[:id])
       erb :'artworks/show'
     end
