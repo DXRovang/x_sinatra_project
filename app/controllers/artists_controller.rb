@@ -49,7 +49,6 @@ class ArtistsController < ApplicationController
   end
 
   get '/artists/:id' do #show
-    # @artist = Artist.find_by_slug(params[:slug])
     if !logged_in?
       redirect '/login'
     else

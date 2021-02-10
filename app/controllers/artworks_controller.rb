@@ -41,7 +41,6 @@ class ArtworksController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      # @artwork = Artwork.find_by_slug(params[:slug])
       @artwork = Artwork.find(params[:id])
       erb :'artworks/show'
     end
