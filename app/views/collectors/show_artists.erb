@@ -2,11 +2,10 @@
   <h1>Artists in Your Collection</h1>
 </div><br>
 
-<% art = @current_user.artworks.sort_by {|x| x.artist.LastName} %>
-<% my_artists = art.uniq {|artist| artist.artist_id} %>
-<% my_artists.each do |x|%>
-  <div class="collection_items">
-  <% artist = Artist.find(x.artist_id) %>
-  <p><a href="/artists/<%= artist.id %>"><%= artist.FirstName %> <%= artist.LastName %></a></p>
-  </div>
+<% artists = @current_user.artists.uniq {|artist| artist.id} %>
+<% my_artists = artists.sort_by {|artist|artist.LastName} %>
+<% my_artists.each do |artist| %>
+<div class="collection_items">
+<p><a href="/artists/<%= artist.id %>"><%= artist.FirstName %> <%= artist.LastName %></a></p>
+</div>
 <%end%>
