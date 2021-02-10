@@ -59,11 +59,20 @@ class CollectorsController < ApplicationController
   end
 
   get '/collectors/delete' do #delete confirmation
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'collectors/delete'
+    end
   end
 
   delete '/collectors/delete' do #delete
-    
+    if !logged_in?
+      redirect '/login'
+    else
+      @current_user.delete
+      redirect to "/signup"
+    end
   end
 
 end
