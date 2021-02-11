@@ -95,3 +95,7 @@ a:link {
   margin-bottom: 10px;
   text-align: center;
 }
+.add_picture{
+  float:left;
+  width: 200px;
+}

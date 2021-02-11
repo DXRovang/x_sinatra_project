@@ -1,7 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
+  # before_action :require_login
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -34,5 +34,12 @@ class ApplicationController < Sinatra::Base
       session.clear
     end
   end
+  private
 
+  # def require_login
+  #   unless logged_in?
+  #     flash[:error] = "You must be logged in to access this section"
+  #     redirect '/login' # halts request cycle
+  #   end
+  # end
 end

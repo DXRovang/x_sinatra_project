@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-
+  
   get '/artworks' do #index
     if !logged_in?
       redirect '/login'
@@ -19,7 +19,7 @@ class ArtworksController < ApplicationController
 
   post '/artworks' do #create
     
-    if Artist.find_by(FirstName: params[:FirstName]) != nil && Artist.find_by(FirstName: params[:FirstName])
+    if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
       artist = Artist.find_by(LastName: params[:LastName])
       artwork = Artwork.new(
         name: params[:name], 
@@ -81,4 +81,5 @@ class ArtworksController < ApplicationController
     artwork.delete
     redirect to "/artworks"
   end
+
 end
