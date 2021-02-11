@@ -21,28 +21,44 @@ class ArtworksController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if params[:name] == "" || params[:LastName] == ""
-        redirect "/artworks/new"
+      if params[:name] == ""
+        redirect "/artworks/errors/empty"
       else
-        if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
-          artist = Artist.find_by(LastName: params[:LastName])
-          artwork = Artwork.new(
-            name: params[:name], 
-            medium: params[:medium], 
-            genre: params[:genre], 
-            price: params[:price], 
-            date: params[:date], 
-            artist_id: artist.id,
-            collector_id: current_user.id 
-          )
-          artwork.save
-          redirect "/artworks"
+        if params[:LastName] == ""
+          redirect "/artworks/errors/artist"
         else
-          redirect "/artworks/new"
+          if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
+            artist = Artist.find_by(LastName: params[:LastName])
+            artwork = Artwork.new(
+              name: params[:name], 
+              medium: params[:medium], 
+              genre: params[:genre], 
+              price: params[:price], 
+              date: params[:date], 
+              artist_id: artist.id,
+              collector_id: current_user.id 
+            )
+            artwork.save
+            redirect "/artworks"
+          else
+            redirect "/artworks/errors/exist"
+          end
         end
-      end
-    end 
+      end 
+    end   
   end
+
+  get '/artworks/errors/empty' do
+    erb :'artworks/errors/empty'
+  end 
+
+  get '/artworks/errors/artist' do
+    erb :'artworks/errors/artist'
+  end 
+
+  get '/artworks/errors/exists' do
+    erb :'artworks/errors/exists'
+  end 
 
   get '/artworks/:id' do #show
     if !logged_in?
@@ -77,9 +93,13 @@ class ArtworksController < ApplicationController
         )
         redirect to "/artworks/#{artwork.id}"
       else
-        redirect to "/artworks/error" 
+        redirect to "/artworks/errors/permission" 
       end
     end
+  end
+
+  get 'artworks/errors/permission' do
+    erb :'artworks/errors/permission'
   end
 
   get '/artworks/:id/delete' do #delete confirmation
@@ -101,7 +121,7 @@ class ArtworksController < ApplicationController
         artwork.delete
         redirect to "/artworks"
       else
-        redirect to "/artworks/error" 
+        redirect to "/artworks/errors/permission" 
       end
     end
   end
