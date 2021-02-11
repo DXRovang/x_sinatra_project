@@ -24,11 +24,11 @@ class ArtistsController < ApplicationController
      
       artists = Artist.all
       if params[:artist][:FirstName] == "" && params[:artist][:LastName] == "" 
-        redirect '/artists/new'
+        redirect '/artists/errors/empty'
       else
         artists.each do |artist|
           if artist.FirstName == params[:artist][:FirstName] && artist.LastName == params[:artist][:LastName]
-            redirect '/artists/error'
+            redirect '/artists/errors/exists'
           end
         end
   
@@ -41,7 +41,7 @@ class ArtistsController < ApplicationController
         #creates new_art & saves it to artist
         #associates new_art with current_user
         if params[:artwork][:name] == ""
-          redirect "/artists/new"
+          redirect "/artists/errors/artwork"
         else
           artist.save
 
@@ -62,8 +62,16 @@ class ArtistsController < ApplicationController
     end 
   end
 
-  get '/artists/error' do
-    erb :'artists/error'
+  get '/artists/error/exists' do
+    erb :'artists/errors/exists'
+  end
+
+  get '/artists/error/empty' do
+    erb :'artists/errors/empty'
+  end
+
+  get '/artists/error/artwork' do
+    erb :'artists/errors/artwork'
   end
 
   get '/artists/:id' do #show
@@ -99,9 +107,13 @@ class ArtistsController < ApplicationController
         )
         redirect to "/artists/#{artist.id}"
       else
-        redirect to "/artworks/error"
+        redirect to "/artworks/errors/permission"
       end
     end
+  end
+
+  get '/artists/error/permission' do
+    erb :'artists/errors/permission'
   end
 
   get '/artists/:id/delete' do #delete confirmation
@@ -127,7 +139,7 @@ class ArtistsController < ApplicationController
         artist.delete
         redirect to "/artists"
       else
-        redirect to "/artworks/error"
+        redirect to "/artists/error/permission"
       end
     end
   end
