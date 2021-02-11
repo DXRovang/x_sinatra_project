@@ -69,13 +69,16 @@ class CollectorsController < ApplicationController
   end
 
   patch '/collectors/edit' do #update
- 
-    current_user.update(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password]
-    )
-    redirect to "/collectors"
+    if !logged_in?
+      redirect '/login'
+    else
+      current_user.update(
+        name: params[:name],
+        email: params[:email],
+        password: params[:password]
+      )
+      redirect to "/collectors"
+    end
   end
 
   get '/collectors/delete' do #delete confirmation
