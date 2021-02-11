@@ -92,6 +92,7 @@ class ArtworksController < ApplicationController
       redirect '/login'
     else
       artwork = Artwork.find_by_id(params[:id])
+      
       if artwork.collector == current_user
         artwork.delete
         redirect to "/artworks"
