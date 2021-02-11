@@ -5,15 +5,25 @@ class CollectorsController < ApplicationController
   end
   
   post '/collectors' do
-    @collector = Collector.new
-    @collector.name = params[:name]
-    @collector.email = params[:email]
-    @collector.password = params[:password]
-    if @collector.save
-      redirect '/login'
+   
+    if params[:name] == "" || params[:email] == "" || params[:password] == ""
+      redirect "/signup"
     else
-      erb :"/collectors/new"
-    end
+        if Collector.find_by(name: params[:name]) || Collector.find_by(email: params[:email])
+          redirect "/signup"
+        else
+          @collector = Collector.new
+          @collector.name = params[:name]
+          @collector.email = params[:email]
+          @collector.password = params[:password]
+          if @collector.save
+            redirect '/login'
+          else
+            erb :"/collectors/new"
+          end
+        end
+      end
+  
   end
 
   get "/index" do #index
