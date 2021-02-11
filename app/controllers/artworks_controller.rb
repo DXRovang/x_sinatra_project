@@ -73,7 +73,7 @@ class ArtworksController < ApplicationController
         )
         redirect to "/artworks/#{artwork.id}"
       else
-        redirect to "error page"  # look at this!!
+        redirect to "/artworks/error" 
       end
     end
   end
@@ -96,7 +96,7 @@ class ArtworksController < ApplicationController
         artwork.delete
         redirect to "/artworks"
       else
-        redirect to "error page"  # look at this!!
+        redirect to "/artworks/error" 
       end
     end
   end
