@@ -21,23 +21,27 @@ class ArtworksController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
-        artist = Artist.find_by(LastName: params[:LastName])
-        artwork = Artwork.new(
-          name: params[:name], 
-          medium: params[:medium], 
-          genre: params[:genre], 
-          price: params[:price], 
-          date: params[:date], 
-          artist_id: artist.id,
-          collector_id: current_user.id 
-        )
-        artwork.save
-        redirect "/artworks"
-      else
+      if params[:name] == "" || params[:LastName] == ""
         redirect "/artworks/new"
+      else
+        if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
+          artist = Artist.find_by(LastName: params[:LastName])
+          artwork = Artwork.new(
+            name: params[:name], 
+            medium: params[:medium], 
+            genre: params[:genre], 
+            price: params[:price], 
+            date: params[:date], 
+            artist_id: artist.id,
+            collector_id: current_user.id 
+          )
+          artwork.save
+          redirect "/artworks"
+        else
+          redirect "/artworks/new"
+        end
       end
-    end
+    end 
   end
 
   get '/artworks/:id' do #show
@@ -92,7 +96,7 @@ class ArtworksController < ApplicationController
       redirect '/login'
     else
       artwork = Artwork.find_by_id(params[:id])
-      
+
       if artwork.collector == current_user
         artwork.delete
         redirect to "/artworks"

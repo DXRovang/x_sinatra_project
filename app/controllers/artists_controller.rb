@@ -21,8 +21,9 @@ class ArtistsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
+     
       artists = Artist.all
-      if params[:artist][:FirstName] == "" && params[:artist][:LastName] == ""
+      if params[:artist][:FirstName] == "" && params[:artist][:LastName] == "" 
         redirect '/artists/new'
       else
         artists.each do |artist|
@@ -37,16 +38,26 @@ class ArtistsController < ApplicationController
           DOB: params[:artist][:DOB],
           origin: params[:artist][:origin]
         )
-        artist.save
         #creates new_art & saves it to artist
         #associates new_art with current_user
-        params[:artist][:artworks].each do |art|  
-          new_art = Artwork.new(art)
+        if params[:artwork][:name] == ""
+          redirect "/artists/new"
+        else
+          artist.save
+
+          new_art = Artwork.new(
+            name: params[:artwork][:name],
+            date: params[:artwork][:date],
+            genre: params[:artwork][:genre],
+            medium: params[:artwork][:medium],
+            price: params[:artwork][:price]
+          )
           new_art.artist = artist
           new_art.collector_id = current_user.id
           new_art.save
+  
+          redirect "/artists/#{artist.id}"
         end
-        redirect "/artists/#{artist.id}"
       end
     end 
   end
