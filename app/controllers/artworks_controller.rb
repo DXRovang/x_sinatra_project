@@ -18,22 +18,25 @@ class ArtworksController < ApplicationController
   end
 
   post '/artworks' do #create
-    
-    if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
-      artist = Artist.find_by(LastName: params[:LastName])
-      artwork = Artwork.new(
-        name: params[:name], 
-        medium: params[:medium], 
-        genre: params[:genre], 
-        price: params[:price], 
-        date: params[:date], 
-        artist_id: artist.id,
-        collector_id: current_user.id 
-      )
-      artwork.save
-      redirect "/artworks"
+    if !logged_in?
+      redirect '/login'
     else
-      redirect "/artworks/new"
+      if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
+        artist = Artist.find_by(LastName: params[:LastName])
+        artwork = Artwork.new(
+          name: params[:name], 
+          medium: params[:medium], 
+          genre: params[:genre], 
+          price: params[:price], 
+          date: params[:date], 
+          artist_id: artist.id,
+          collector_id: current_user.id 
+        )
+        artwork.save
+        redirect "/artworks"
+      else
+        redirect "/artworks/new"
+      end
     end
   end
 
@@ -56,15 +59,23 @@ class ArtworksController < ApplicationController
   end
 
   patch '/artworks/:id' do #update
-    artwork = Artwork.find_by_id(params[:id])
-
-    artwork.update(
-      name: params[:name],
-      genre: params[:genre],
-      medium: params[:medium],
-      date: params[:date],
-    )
-    redirect to "/artworks/#{artwork.id}"
+    if !logged_in?
+      redirect '/login'
+    else 
+      artwork = Artwork.find_by_id(params[:id])
+      
+      if artwork.collector == current_user
+        artwork.update(
+          name: params[:name],
+          genre: params[:genre],
+          medium: params[:medium],
+          date: params[:date],
+        )
+        redirect to "/artworks/#{artwork.id}"
+      else
+        redirect to "error page"  # look at this!!
+      end
+    end
   end
 
   get '/artworks/:id/delete' do #delete confirmation
@@ -77,9 +88,17 @@ class ArtworksController < ApplicationController
   end
 
   delete '/artworks/:id/delete' do #delete
-    artwork = Artwork.find_by_id(params[:id])
-    artwork.delete
-    redirect to "/artworks"
+    if !logged_in?
+      redirect '/login'
+    else
+      artwork = Artwork.find_by_id(params[:id])
+      if artwork.collector == current_user
+        artwork.delete
+        redirect to "/artworks"
+      else
+        redirect to "error page"  # look at this!!
+      end
+    end
   end
 
 end
