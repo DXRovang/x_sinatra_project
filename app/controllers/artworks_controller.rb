@@ -41,7 +41,7 @@ class ArtworksController < ApplicationController
             artwork.save
             redirect "/artworks"
           else
-            redirect "/artworks/errors/exist"
+            redirect "/artworks/errors/exists"
           end
         end
       end 
@@ -98,7 +98,7 @@ class ArtworksController < ApplicationController
     end
   end
 
-  get 'artworks/errors/permission' do
+  get '/artworks/errors/permission' do
     erb :'artworks/errors/permission'
   end
 

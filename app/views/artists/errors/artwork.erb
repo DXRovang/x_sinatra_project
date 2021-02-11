@@ -1,1 +1,52 @@
 I'm sorry, you must enter the name of an Artwork to add an Artist to the Database.
+
+<img class="picture" src="/images/Frida.jpg" style="width:400px;height:500px;float:right;">
+
+<h1>ARTIST</h1>
+
+<div class="add_picture">
+<form action="/artists" method="post">
+<div>
+  <div><label for="artist_first_name">First Name: </label></div>
+  <input type=text name=artist[FirstName] id="artist_first_name">
+</div>
+<div>
+  <div><label for="artist_last_name">Last Name: </label></div>
+  <input type=text name=artist[LastName] id="artist_last_name">
+</div>
+<div>
+  <div><label for="artist_DOB">DOB-DOD: </label></div>
+  <input type=text name=artist[DOB] id="artist_DOB">
+</div>
+<div>
+  <div><label for="artist_origin">Origin: </label></div>
+  <input type=text name=artist[origin] id="artist_origin">
+</div>
+
+<br>
+
+<h2>ARTWORK</h2>
+
+<div>
+  <div><label for="artwork_name">Name: </label></div>
+  <input type=text name=artwork[name] id="artwork_name">
+</div>
+<div>
+  <div><label for="artwork_date">Year: </label></div>
+  <input type=text name=artwork[date] id="artwork_date">
+</div>
+<div>
+  <div><label for="artwork_medium">Medium: </label></div>
+  <input type=text name=artwork[medium] id="artwork_medium">
+</div>
+<div>
+  <div><label for="artwork_genre">Genre: </label></div>
+  <input type=text name=artwork[genre] id="artwork_genre">
+</div>
+<div>
+  <div><label for="artwork_price">Price(USD): </label></div>
+  <input type=text name=artwork[price] id="artwork_price">
+</div><br>
+
+  <input type=submit>
+</form><br></div>

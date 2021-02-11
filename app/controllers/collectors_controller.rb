@@ -5,12 +5,14 @@ class CollectorsController < ApplicationController
   end
   
   post '/collectors' do
-   
     if params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect "/signup"
     else
-        if Collector.find_by(name: params[:name]) || Collector.find_by(email: params[:email])
-          redirect "/signup"
+      if Collector.find_by(name: params[:name])
+        redirect "/collectors/errors/username"
+      else
+        if Collector.find_by(email: params[:email])
+          redirect "/collectors/errors/email"
         else
           @collector = Collector.new
           @collector.name = params[:name]
@@ -23,7 +25,15 @@ class CollectorsController < ApplicationController
           end
         end
       end
-  
+    end
+  end
+
+  get "/collectors/errors/username" do
+    erb :"collectors/errors/username"
+  end
+
+  get "/collectors/errors/email" do
+    erb :"collectors/errors/email"
   end
 
   get "/index" do #index

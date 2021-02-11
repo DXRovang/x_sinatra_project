@@ -62,15 +62,15 @@ class ArtistsController < ApplicationController
     end 
   end
 
-  get '/artists/error/exists' do
+  get '/artists/errors/exists' do
     erb :'artists/errors/exists'
   end
 
-  get '/artists/error/empty' do
+  get '/artists/errors/empty' do
     erb :'artists/errors/empty'
   end
 
-  get '/artists/error/artwork' do
+  get '/artists/errors/artwork' do
     erb :'artists/errors/artwork'
   end
 
@@ -98,7 +98,7 @@ class ArtistsController < ApplicationController
     else
       artist = Artist.find_by_id(params[:id])
 
-      if artist.collector == current_user
+      if artist.collectors.include?(current_user)
         artist.update(
           FirstName: params[:FirstName],
           LastName: params[:LastName],
@@ -112,7 +112,7 @@ class ArtistsController < ApplicationController
     end
   end
 
-  get '/artists/error/permission' do
+  get '/artists/errors/permission' do
     erb :'artists/errors/permission'
   end
 
@@ -131,7 +131,7 @@ class ArtistsController < ApplicationController
     else
       artist = Artist.find_by_id(params[:id])
 
-      if artist.collector == current_user
+      if artist.collectors.include?(current_user)
         art = artist.artworks 
         art.each do |work|
           work.delete
@@ -139,7 +139,7 @@ class ArtistsController < ApplicationController
         artist.delete
         redirect to "/artists"
       else
-        redirect to "/artists/error/permission"
+        redirect to "/artists/errors/permission"
       end
     end
   end
