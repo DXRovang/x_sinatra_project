@@ -93,6 +93,9 @@ class CollectorsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
+      @current_user.artworks.each do |art|
+        art.delete
+      end
       @current_user.delete
       redirect to "/signup"
     end

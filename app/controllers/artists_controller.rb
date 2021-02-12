@@ -134,10 +134,14 @@ class ArtistsController < ApplicationController
       if artist.collectors.include?(current_user)
         art = artist.artworks 
         art.each do |work|
+          if work.artist.artworks.length == 1
           work.delete
+          artist.delete
+          redirect to "/artists"
+          else
+            work.delete
+          end
         end
-        artist.delete
-        redirect to "/artists"
       else
         redirect to "/artists/errors/permission"
       end
@@ -145,3 +149,14 @@ class ArtistsController < ApplicationController
   end
   
 end
+
+
+# I want to see if the number of artworks that an artist has 
+# is the same as the number of artworks by that artist that 
+# the collector has.
+
+# number of artworks an artist has
+# artist.artworks.length = 3
+
+# how do i find how many the user has?
+# something like, user.artworks where artworks.artist == artist
