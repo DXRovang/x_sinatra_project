@@ -4,7 +4,7 @@
     <p><%= @artist.origin %></p>
 <div>
     <a href="/artists/<%= @artist.id %>/edit"><button>Edit</button><a>
-    <% if @artist.artworks[0].name == "" || @artist.artworks[0].name == [] %>
+    <% if @artist.artworks == [] %>
         <a href="/artists/<%= @artist.id %>/delete"><button>Delete</button><a>
     <% end %>
 </div>

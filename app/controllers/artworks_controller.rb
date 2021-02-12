@@ -27,21 +27,25 @@ class ArtworksController < ApplicationController
         if params[:LastName] == ""
           redirect "/artworks/errors/artist"
         else
-          if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
-            artist = Artist.find_by(LastName: params[:LastName])
-            artwork = Artwork.new(
-              name: params[:name], 
-              medium: params[:medium], 
-              genre: params[:genre], 
-              price: params[:price], 
-              date: params[:date], 
-              artist_id: artist.id,
-              collector_id: current_user.id 
-            )
-            artwork.save
-            redirect "/artworks"
+          if params[:date] == nil
+            redirect "artworks/errors/date"
           else
-            redirect "/artworks/errors/exists"
+            if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
+              artist = Artist.find_by(LastName: params[:LastName])
+              artwork = Artwork.new(
+                name: params[:name], 
+                medium: params[:medium], 
+                genre: params[:genre], 
+                price: params[:price], 
+                date: params[:date], 
+                artist_id: artist.id,
+                collector_id: current_user.id 
+              )
+              artwork.save
+              redirect "/artworks"
+            else
+              redirect "/artworks/errors/exists"
+            end
           end
         end
       end 
@@ -58,6 +62,10 @@ class ArtworksController < ApplicationController
 
   get '/artworks/errors/exists' do
     erb :'artworks/errors/exists'
+  end 
+
+  get '/artworks/errors/date' do
+    erb :'artworks/errors/date'
   end 
 
   get '/artworks/:id' do #show

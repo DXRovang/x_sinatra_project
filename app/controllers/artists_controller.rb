@@ -21,7 +21,6 @@ class ArtistsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-     
       artists = Artist.all
       if params[:artist][:FirstName] == "" && params[:artist][:LastName] == "" 
         redirect '/artists/errors/empty'
@@ -31,7 +30,6 @@ class ArtistsController < ApplicationController
             redirect '/artists/errors/exists'
           end
         end
-  
         artist = Artist.new(
           FirstName: params[:artist][:FirstName],
           LastName: params[:artist][:LastName],
@@ -43,20 +41,24 @@ class ArtistsController < ApplicationController
         if params[:artwork][:name] == ""
           redirect "/artists/errors/artwork"
         else
-          artist.save
+          if params[:artwork][:date] == nil
+            redirect "artworks/errors/date"
+          else
+            artist.save
 
-          new_art = Artwork.new(
-            name: params[:artwork][:name],
-            date: params[:artwork][:date],
-            genre: params[:artwork][:genre],
-            medium: params[:artwork][:medium],
-            price: params[:artwork][:price]
-          )
-          new_art.artist = artist
-          new_art.collector_id = current_user.id
-          new_art.save
-  
-          redirect "/artists/#{artist.id}"
+            new_art = Artwork.new(
+              name: params[:artwork][:name],
+              date: params[:artwork][:date],
+              genre: params[:artwork][:genre],
+              medium: params[:artwork][:medium],
+              price: params[:artwork][:price]
+            )
+            new_art.artist = artist
+            new_art.collector_id = current_user.id
+            new_art.save
+    
+            redirect "/artists/#{artist.id}"
+          end
         end
       end
     end 
@@ -130,33 +132,10 @@ class ArtistsController < ApplicationController
       redirect '/login'
     else
       artist = Artist.find_by_id(params[:id])
-
-      if artist.collectors.include?(current_user)
-        art = artist.artworks 
-        art.each do |work|
-          if work.artist.artworks.length == 1
-          work.delete
-          artist.delete
-          redirect to "/artists"
-          else
-            work.delete
-          end
-        end
-      else
-        redirect to "/artists/errors/permission"
-      end
+      artist.delete
+      redirect to "/artists"
     end
   end
   
 end
 
-
-# I want to see if the number of artworks that an artist has 
-# is the same as the number of artworks by that artist that 
-# the collector has.
-
-# number of artworks an artist has
-# artist.artworks.length = 3
-
-# how do i find how many the user has?
-# something like, user.artworks where artworks.artist == artist
