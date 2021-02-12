@@ -1,18 +1,18 @@
 <div class="table_header">
 <h1>Signup</h1>
-
+<%= @error %><br><br>
 <form action="/collectors" method="post">
 <div>
   <div><label for="name">Name:</label></div>
-  <input type="text" name="name" id="name">
+  <input type="text" name="name" id="name" value="<%= @name %>">
 </div>
 <div>
   <div><label for="email">Email:</label></div>
-  <input type="text" name="email" id="email">
+  <input type="text" name="email" id="email" value="<%= @email %>">
 </div>
 <div>
   <div><label for="password">Password:</label></div>
-  <input type="password" name="password" id="password">
+  <input type="password" name="password" id="password" value="<%= @password %>">
 </div><br>
 
   <input type=submit>

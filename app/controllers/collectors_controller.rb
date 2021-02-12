@@ -5,8 +5,12 @@ class CollectorsController < ApplicationController
   end
   
   post '/collectors' do
+    @name = params[:name]
+    @email = params[:email]
+    @password = params[:password]
     if params[:name] == "" || params[:email] == "" || params[:password] == ""
-      redirect "/signup"
+      @error = "-You must fill in all fields-"
+      erb :"/collectors/new"
     elsif Collector.find_by(name: params[:name])
       redirect "/collectors/errors/username"
     elsif Collector.find_by(email: params[:email])
