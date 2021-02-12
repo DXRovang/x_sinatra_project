@@ -7,33 +7,21 @@ class CollectorsController < ApplicationController
   post '/collectors' do
     if params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect "/signup"
+    elsif Collector.find_by(name: params[:name])
+      redirect "/collectors/errors/username"
+    elsif Collector.find_by(email: params[:email])
+      redirect "/collectors/errors/email"
     else
-      if Collector.find_by(name: params[:name])
-        redirect "/collectors/errors/username"
+      @collector = Collector.new
+      @collector.name = params[:name]
+      @collector.email = params[:email]
+      @collector.password = params[:password]
+      if @collector.save
+        redirect '/login'
       else
-        if Collector.find_by(email: params[:email])
-          redirect "/collectors/errors/email"
-        else
-          @collector = Collector.new
-          @collector.name = params[:name]
-          @collector.email = params[:email]
-          @collector.password = params[:password]
-          if @collector.save
-            redirect '/login'
-          else
-            erb :"/collectors/new"
-          end
-        end
+        erb :"/collectors/new"
       end
     end
-  end
-
-  get "/collectors/errors/username" do
-    erb :"collectors/errors/username"
-  end
-
-  get "/collectors/errors/email" do
-    erb :"collectors/errors/email"
   end
 
   get "/index" do #index
@@ -99,6 +87,14 @@ class CollectorsController < ApplicationController
       current_user.delete
       redirect to "/signup"
     end
+  end
+  
+  get "/collectors/errors/username" do
+    erb :"collectors/errors/username"
+  end
+
+  get "/collectors/errors/email" do
+    erb :"collectors/errors/email"
   end
 
 end

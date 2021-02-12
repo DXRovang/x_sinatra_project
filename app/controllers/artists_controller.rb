@@ -44,7 +44,6 @@ class ArtistsController < ApplicationController
             redirect "artists/errors/date"
         else
           artist.save
-
           new_art = Artwork.new(
             name: params[:artwork][:name],
             date: params[:artwork][:date],
@@ -55,27 +54,10 @@ class ArtistsController < ApplicationController
           new_art.artist = artist
           new_art.collector_id = current_user.id
           new_art.save
-  
           redirect "/artists/#{artist.id}"
         end
       end
     end 
-  end
-
-  get '/artists/errors/exists' do
-    erb :'artists/errors/exists'
-  end
-
-  get '/artists/errors/empty' do
-    erb :'artists/errors/empty'
-  end
-
-  get '/artists/errors/artwork' do
-    erb :'artists/errors/artwork'
-  end
-
-  get '/artists/errors/date' do
-    erb :'artists/errors/date'
   end
 
   get '/artists/:id' do #show
@@ -116,10 +98,6 @@ class ArtistsController < ApplicationController
     end
   end
 
-  get '/artists/errors/permission' do
-    erb :'artists/errors/permission'
-  end
-
   get '/artists/:id/delete' do #delete confirmation
     if !logged_in?
       redirect '/login'
@@ -142,6 +120,25 @@ class ArtistsController < ApplicationController
       redirect to "/artists"
     end
   end
-  
+
+  get '/artists/errors/exists' do
+    erb :'artists/errors/exists'
+  end
+
+  get '/artists/errors/empty' do
+    erb :'artists/errors/empty'
+  end
+
+  get '/artists/errors/artwork' do
+    erb :'artists/errors/artwork'
+  end
+
+  get '/artists/errors/date' do
+    erb :'artists/errors/date'
+  end
+  get '/artists/errors/permission' do
+    erb :'artists/errors/permission'
+  end
+
 end
 

@@ -48,22 +48,6 @@ class ArtworksController < ApplicationController
     end   
   end
 
-  get '/artworks/errors/empty' do
-    erb :'artworks/errors/empty'
-  end 
-
-  get '/artworks/errors/artist' do
-    erb :'artworks/errors/artist'
-  end 
-
-  get '/artworks/errors/exists' do
-    erb :'artworks/errors/exists'
-  end 
-
-  get '/artworks/errors/date' do
-    erb :'artworks/errors/date'
-  end 
-
   get '/artworks/:id' do #show
     if !logged_in?
       redirect '/login'
@@ -87,7 +71,6 @@ class ArtworksController < ApplicationController
       redirect '/login'
     else 
       artwork = Artwork.find_by_id(params[:id])
-      
       if artwork.collector == current_user
         artwork.update(
           name: params[:name],
@@ -100,10 +83,6 @@ class ArtworksController < ApplicationController
         redirect to "/artworks/errors/permission" 
       end
     end
-  end
-
-  get '/artworks/errors/permission' do
-    erb :'artworks/errors/permission'
   end
 
   get '/artworks/:id/delete' do #delete confirmation
@@ -120,7 +99,6 @@ class ArtworksController < ApplicationController
       redirect '/login'
     else
       artwork = Artwork.find_by_id(params[:id])
-
       if artwork.collector == current_user
         artwork.delete
         redirect to "/artworks"
@@ -128,6 +106,26 @@ class ArtworksController < ApplicationController
         redirect to "/artworks/errors/permission" 
       end
     end
+  end
+
+  get '/artworks/errors/empty' do
+    erb :'artworks/errors/empty'
+  end 
+
+  get '/artworks/errors/artist' do
+    erb :'artworks/errors/artist'
+  end 
+
+  get '/artworks/errors/exists' do
+    erb :'artworks/errors/exists'
+  end 
+
+  get '/artworks/errors/date' do
+    erb :'artworks/errors/date'
+  end 
+
+  get '/artworks/errors/permission' do
+    erb :'artworks/errors/permission'
   end
 
 end
