@@ -12,10 +12,11 @@ class CollectorsController < ApplicationController
     elsif Collector.find_by(email: params[:email])
       redirect "/collectors/errors/email"
     else
-      @collector = Collector.new
-      @collector.name = params[:name]
-      @collector.email = params[:email]
-      @collector.password = params[:password]
+      @collector = Collector.new(
+        name: params[:name],
+        email: params[:email],
+        password: params[:password]
+      )
       if @collector.save
         redirect '/login'
       else
