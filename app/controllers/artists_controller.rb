@@ -132,7 +132,11 @@ class ArtistsController < ApplicationController
       redirect '/login'
     else
       artist = Artist.find_by_id(params[:id])
-      artist.delete
+      if artist.artworks == []
+        artist.delete
+      else
+        redirect to '/artists/errors/permission' 
+      end
       redirect to "/artists"
     end
   end
