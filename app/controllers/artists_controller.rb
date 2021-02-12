@@ -40,25 +40,23 @@ class ArtistsController < ApplicationController
         #associates new_art with current_user
         if params[:artwork][:name] == ""
           redirect "/artists/errors/artwork"
+        elsif params[:artwork][:date] == nil || params[:artwork][:date] == ""
+            redirect "artists/errors/date"
         else
-          if params[:artwork][:date] == nil
-            redirect "artworks/errors/date"
-          else
-            artist.save
+          artist.save
 
-            new_art = Artwork.new(
-              name: params[:artwork][:name],
-              date: params[:artwork][:date],
-              genre: params[:artwork][:genre],
-              medium: params[:artwork][:medium],
-              price: params[:artwork][:price]
-            )
-            new_art.artist = artist
-            new_art.collector_id = current_user.id
-            new_art.save
-    
-            redirect "/artists/#{artist.id}"
-          end
+          new_art = Artwork.new(
+            name: params[:artwork][:name],
+            date: params[:artwork][:date],
+            genre: params[:artwork][:genre],
+            medium: params[:artwork][:medium],
+            price: params[:artwork][:price]
+          )
+          new_art.artist = artist
+          new_art.collector_id = current_user.id
+          new_art.save
+  
+          redirect "/artists/#{artist.id}"
         end
       end
     end 
@@ -74,6 +72,10 @@ class ArtistsController < ApplicationController
 
   get '/artists/errors/artwork' do
     erb :'artists/errors/artwork'
+  end
+
+  get '/artists/errors/date' do
+    erb :'artists/errors/date'
   end
 
   get '/artists/:id' do #show

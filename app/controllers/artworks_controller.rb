@@ -23,30 +23,26 @@ class ArtworksController < ApplicationController
     else
       if params[:name] == ""
         redirect "/artworks/errors/empty"
+      elsif params[:LastName] == ""
+        redirect "/artworks/errors/artist"
+      elsif params[:date] == nil || params[:date] == ""
+        redirect "artworks/errors/date"
       else
-        if params[:LastName] == ""
-          redirect "/artworks/errors/artist"
+        if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
+          artist = Artist.find_by(LastName: params[:LastName])
+          artwork = Artwork.new(
+            name: params[:name], 
+            medium: params[:medium], 
+            genre: params[:genre], 
+            price: params[:price], 
+            date: params[:date], 
+            artist_id: artist.id,
+            collector_id: current_user.id 
+          )
+          artwork.save
+          redirect "/artworks"
         else
-          if params[:date] == nil
-            redirect "artworks/errors/date"
-          else
-            if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
-              artist = Artist.find_by(LastName: params[:LastName])
-              artwork = Artwork.new(
-                name: params[:name], 
-                medium: params[:medium], 
-                genre: params[:genre], 
-                price: params[:price], 
-                date: params[:date], 
-                artist_id: artist.id,
-                collector_id: current_user.id 
-              )
-              artwork.save
-              redirect "/artworks"
-            else
-              redirect "/artworks/errors/exists"
-            end
-          end
+          redirect "/artworks/errors/exists"
         end
       end 
     end   

@@ -1,4 +1,4 @@
-Are you sure you want to remove <%= @artist.FirstName %> <%= @artist.LastName %>from the database?
+Are you sure you want to remove <%= @artist.FirstName %> <%= @artist.LastName %> from the database?
 
 <form action="/artists/<%= @artist.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete" />
