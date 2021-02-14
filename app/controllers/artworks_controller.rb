@@ -22,11 +22,15 @@ class ArtworksController < ApplicationController
       redirect '/login'
     else
       if params[:name] == ""
-        redirect "/artworks/errors/empty"
+        @error = "I'm sorry, you must name an Artwork to enter it in the Database."
+        erb :'artworks/new'
       elsif params[:LastName] == ""
-        redirect "/artworks/errors/artist"
+        @error = "I'm sorry, you must enter the name of an Artist to add an Artwork to the Database.
+        "
+        erb :'artworks/new'
       elsif params[:date] == nil || params[:date] == ""
-        redirect "artworks/errors/date"
+        @error = "I'm sorry, you must enter a date for this Artwork."
+        erb :'artworks/new'
       else
         if Artist.find_by(LastName: params[:LastName]) != nil && Artist.find_by(LastName: params[:LastName])
           artist = Artist.find_by(LastName: params[:LastName])
@@ -42,7 +46,9 @@ class ArtworksController < ApplicationController
           artwork.save
           redirect "/artworks"
         else
-          redirect "/artworks/errors/exists"
+          @error = "I'm sorry, you must enter the name of an existing Artist to add an artwork to the Database.
+          "
+          erb :'artworks/new'
         end
       end 
     end   
