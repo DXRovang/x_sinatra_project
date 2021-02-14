@@ -126,21 +126,6 @@ class ArtistsController < ApplicationController
     end
   end
 
-  get '/artists/errors/exists' do
-    erb :'artists/errors/exists'
-  end
-
-  get '/artists/errors/empty' do
-    erb :'artists/errors/empty'
-  end
-
-  get '/artists/errors/artwork' do
-    erb :'artists/errors/artwork'
-  end
-
-  get '/artists/errors/date' do
-    erb :'artists/errors/date'
-  end
   get '/artists/errors/permission' do
     erb :'artists/errors/permission'
   end
