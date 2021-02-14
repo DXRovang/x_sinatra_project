@@ -43,6 +43,19 @@ class ApplicationController < Sinatra::Base
       @FirstName = params[:FirstName]
       @LastName = params[:LastName]
     end
+
+    def artists_instance_varibles
+      @FirstName = params[:artist][:FirstName]
+      @LastName = params[:artist][:LastName]
+      @DOB = params[:artist][:DOB] 
+      @origin = params[:artist][:origin] 
+
+      @name = params[:artwork][:name] 
+      @medium = params[:artwork][:medium] 
+      @genre = params[:artwork][:genre] 
+      @price = params[:artwork][:price] 
+      @date = params[:artwork][:date] 
+    end
   end
 
 end

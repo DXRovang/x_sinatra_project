@@ -7,19 +7,19 @@
 <form action="/artists" method="post">
 <div>
   <div><label for="artist_first_name">First Name(required): </label></div>
-  <input type=text name=artist[FirstName] id="artist_first_name">
+  <input type=text name=artist[FirstName] id="artist_first_name" value="<%= @FirstName %>">
 </div>
 <div>
   <div><label for="artist_last_name">Last Name(required): </label></div>
-  <input type=text name=artist[LastName] id="artist_last_name">
+  <input type=text name=artist[LastName] id="artist_last_name" value="<%= @LastName %>">
 </div>
 <div>
   <div><label for="artist_DOB">DOB-DOD: </label></div>
-  <input type=text name=artist[DOB] id="artist_DOB">
+  <input type=text name=artist[DOB] id="artist_DOB" value="<%= @DOB %>">
 </div>
 <div>
   <div><label for="artist_origin">Origin: </label></div>
-  <input type=text name=artist[origin] id="artist_origin">
+  <input type=text name=artist[origin] id="artist_origin" value="<%= @origin %>">
 </div>
 
 <br>
@@ -28,23 +28,23 @@
 
 <div>
   <div><label for="artwork_name">Name(required): </label></div>
-  <input type=text name=artwork[name] id="artwork_name">
+  <input type=text name=artwork[name] id="artwork_name" value="<%= @name %>">
 </div>
 <div>
   <div><label for="artwork_date">Year(required): </label></div>
-  <input type=text name=artwork[date] id="artwork_date">
+  <input type=text name=artwork[date] id="artwork_date" value="<%= @date %>">
 </div>
 <div>
   <div><label for="artwork_medium">Medium: </label></div>
-  <input type=text name=artwork[medium] id="artwork_medium">
+  <input type=text name=artwork[medium] id="artwork_medium" value="<%= @medium %>">
 </div>
 <div>
   <div><label for="artwork_genre">Genre: </label></div>
-  <input type=text name=artwork[genre] id="artwork_genre">
+  <input type=text name=artwork[genre] id="artwork_genre" value="<%= @genre %>">
 </div>
 <div>
   <div><label for="artwork_price">Price(USD): </label></div>
-  <input type=text name=artwork[price] id="artwork_price">
+  <input type=text name=artwork[price] id="artwork_price" value="<%= @price %>">
 </div><br>
 
   <input type=submit>
