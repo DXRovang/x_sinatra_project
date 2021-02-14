@@ -23,11 +23,13 @@ class ArtistsController < ApplicationController
     else
       artists = Artist.all
       if params[:artist][:FirstName] == "" && params[:artist][:LastName] == "" 
-        redirect '/artists/errors/empty'
+        @error = "I'm sorry, you must enter a name to create an Artist profile."
+        erb :'artists/new'
       else
         artists.each do |artist|
           if artist.FirstName == params[:artist][:FirstName] && artist.LastName == params[:artist][:LastName]
-            redirect '/artists/errors/exists'
+            @error = "I'm sorry, this Artist already exists in the Database."
+            erb :'artists/new'
           end
         end
         artist = Artist.new(
@@ -39,9 +41,12 @@ class ArtistsController < ApplicationController
         #creates new_art & saves it to artist
         #associates new_art with current_user
         if params[:artwork][:name] == ""
-          redirect "/artists/errors/artwork"
+          @error = "I'm sorry, you must enter the name of an Artwork to add an Artist to the Database.
+          "
+          erb :'artists/new'
         elsif params[:artwork][:date] == nil || params[:artwork][:date] == ""
-            redirect "artists/errors/date"
+          @error = "I'm sorry, you must enter a date for this Artwork."  
+          erb :'artists/new'
         else
           artist.save
           new_art = Artwork.new(
