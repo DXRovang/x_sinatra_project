@@ -33,6 +33,16 @@ class ApplicationController < Sinatra::Base
     def logout!
       session.clear
     end
+
+    def artworks_instance_varibles
+      @name = params[:name] 
+      @medium = params[:medium] 
+      @genre = params[:genre] 
+      @price = params[:price] 
+      @date = params[:date] 
+      @FirstName = params[:FirstName]
+      @LastName = params[:LastName]
+    end
   end
 
 end
