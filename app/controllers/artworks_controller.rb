@@ -18,6 +18,15 @@ class ArtworksController < ApplicationController
   end
 
   post '/artworks' do #create
+
+    @name = params[:name] 
+    @medium = params[:medium] 
+    @genre = params[:genre] 
+    @price = params[:price] 
+    @date = params[:date] 
+    @FirstName = params[:FirstName]
+    @LastName = params[:LastName]
+
     if !logged_in?
       redirect '/login'
     else
