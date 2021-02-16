@@ -55,6 +55,8 @@ class ApplicationController < Sinatra::Base
       @genre = params[:artwork][:genre] 
       @price = params[:artwork][:price] 
       @date = params[:artwork][:date] 
+
+      erb :'artists/new'
     end
   end
 
